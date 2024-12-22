@@ -2,7 +2,7 @@
 /node_modules/
 
 # Build output
-/dist/s
+/dist/
 /out-tsc/
 
 /package-lock.json/
