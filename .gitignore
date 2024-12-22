@@ -1,0 +1,8 @@
+# Node modules
+/node_modules/
+
+# Build output
+/dist/s
+/out-tsc/
+
+/package-lock.json/
