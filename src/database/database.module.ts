@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../user/entities/user.entity';
+import { Product } from 'src/product/product.entity';
 
 @Global() // Marking the module as global
 @Module({
@@ -12,8 +13,8 @@ import { User } from '../user/entities/user.entity';
       username: 'root',
       password: 'root@123',
       database: 'user',
-      entities: [User],
-      synchronize: false
+      entities: [User, Product],
+      synchronize: true
     }),
   ],
   exports: [TypeOrmModule]

@@ -1,6 +1,7 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -10,13 +11,14 @@ export class UserController {
 
     // Create New User 
     @Post()
+    @UseGuards(JwtAuthGuard)
     async createNewUser () {
         const userData = {
             username: 'Dips',
             password: 'Dipa123',
             email: 'Dip112s@gmail.com',
         }
-        this.userService.create(userData.username,userData.password,userData.email);
+       return await this.userService.create(userData.username,userData.password,userData.email);
     }
 
     // Get all users
