@@ -1,0 +1,52 @@
+
+*************** Query to Get All Products: ************************
+query {
+  products {
+    id
+    name
+    price
+    description
+  }
+}
+
+***************** Query to Get a Single Product by ID: ******************W
+query {
+  products(id: 1) {
+    id
+    name
+    price
+    description
+  }
+}
+
+
+************ One Product Inerstion at a time ************W
+mutation {
+  createProduct(createProductInput: {
+    name: "Laptop1"
+    description: "A high-end lapto32p"
+    price: 65000
+  }) {
+    id
+    name
+    description
+    price
+  }
+}
+
+*************** Multiple Product Insertion *****************W
+mutation {
+  createProducts(createProductsInput: {
+    products: [
+      { name: "Laptop", description: "A high-end laptop", price: 1000 },
+      { name: "Phone", description: "A smartphone", price: 500 },
+      { name: "Tablet", description: "A large tablet", price: 800 }
+    ]
+  }) {
+    id
+    name
+    description
+    price
+  }
+}
+

@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Module({
-  providers: [AuthService],
+  imports: [forwardRef(() => AuthModule)], // Resolves circular dependency
+  providers: [AuthService, JwtAuthGuard],
   controllers: [AuthController],
   exports: [JwtAuthGuard],
 })

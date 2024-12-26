@@ -1,32 +1,27 @@
-import { Body, Controller, Post, Get, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, Get, UseGuards, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { CreateProductDto } from './dto/create-product.dto';
+// import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './product.entity';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+// import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+// import { filter } from 'rxjs';
+import { ProductFilterInput } from './dto/product-filter.input';
+import { CreateProductsInput } from './dto/create-products.input';
 
 @Controller('product')
 export class ProductController {
     constructor (private readonly productService: ProductService) {}
 
-    @Post()
-    @UseGuards(JwtAuthGuard)
-    create(@Body() createProductDto: CreateProductDto): Promise<Product>{
-        return this.productService.create(createProductDto);
-    }
-    // async create(){
-    //   const createProductDto = {
-    //     name:'Abbcs',
-    //     price: 5000,
-    //     description:'asdaaf'
-
-    //   }
-    //   return this.productService.create(createProductDto);
-    // }
-
+    // REST endpoint to fetch multiple products
     @Get()
-    @UseGuards(JwtAuthGuard) 
-    findAll(): Promise<Product[]> {
-      return this.productService.findAll();
+    async getProduct(@Query() filter: ProductFilterInput): Promise<Product[]> {
+      return this.productService.getProducts(filter);
     }
+
+  // REST endpoint to create multiple products
+  @Post()
+  async createProducts(
+    @Body() createProductsInput: CreateProductsInput,): Promise<Product[]> {
+    return this.productService.createProducts(createProductsInput.products);
+  }
 }
  

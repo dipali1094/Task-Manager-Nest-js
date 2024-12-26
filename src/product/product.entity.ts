@@ -1,17 +1,30 @@
+
+// @ObjectType(): Makes this entity available for GraphQL.
+// @Entity(): Marks it as a TypeORM entity.
+// @PrimaryGeneratedColumn(): Marks the id as the primary key of the table.
+// @Column(): Maps the other fields to columns in the database.
+
 import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @Entity()
+@ObjectType() // This decorator is crucial for GraphQL
 export class Product {
-    @PrimaryGeneratedColumn()
-    id :number
+  @Field(() => Int) // Specify the GraphQL type for each field
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string
+  @Field()
+  @Column()
+  name: string;
 
-    @Column('decimal')
-    price: number
+  @Field(() => Int)
+  @Column()
+  price: number;
 
-    @Column()
-    description: string
+  @Field()
+  @Column()
+  description: string;
 }
+
 
