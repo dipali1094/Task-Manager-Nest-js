@@ -7,12 +7,13 @@ import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
-      driver: 'apollo-server-express', 
-      autoSchemaFile: true,  // Automatically generates the schema file
-      playground: true,  // Enables GraphQL Playground for testing
-    }),
-    DatabaseModule, UserModule, ProductModule, AuthModule
+    // GraphQLModule.forRoot({
+    //   driver: 'apollo-server-express', 
+    //   autoSchemaFile: true,  // Automatically generates the schema file
+    //   playground: true,  // Enables GraphQL Playground for testing
+    // }),
+    DatabaseModule, UserModule, ProductModule, 
+    // /AuthModule
   ]
 })
 export class AppModule {}

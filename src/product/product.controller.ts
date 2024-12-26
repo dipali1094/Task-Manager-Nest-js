@@ -10,18 +10,18 @@ export class ProductController {
 
     @Post()
     @UseGuards(JwtAuthGuard)
-    // create(@Body() createProductDto: CreateProductDto): Promise<Product>{
-    //     return this.productService.create(createProductDto);
-    // }
-    async create(){
-      const createProductDto = {
-        name:'Abbcs',
-        price: 5000,
-        description:'asdaaf'
-
-      }
-      return this.productService.create(createProductDto);
+    create(@Body() createProductDto: CreateProductDto): Promise<Product>{
+        return this.productService.create(createProductDto);
     }
+    // async create(){
+    //   const createProductDto = {
+    //     name:'Abbcs',
+    //     price: 5000,
+    //     description:'asdaaf'
+
+    //   }
+    //   return this.productService.create(createProductDto);
+    // }
 
     @Get()
     @UseGuards(JwtAuthGuard) 
