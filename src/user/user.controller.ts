@@ -8,28 +8,9 @@ export class UserController {
     constructor (
         private readonly userService : UserService
     ){}
-
-    // Create New User 
-    @Post()
-    @UseGuards(JwtAuthGuard)
-    async createNewUser () {
-        const userData = {
-            username: 'Dips',
-            password: 'Dipa123',
-            email: 'Dip112s@gmail.com',
-        }
-       return await this.userService.create(userData.username,userData.password,userData.email);
-    }
-
-    // Get all users
-    @Get()
-    async findAllUsers() : Promise<User[]> {
-        return this.userService.getAllUsers();
-    }
-
     // Get user by ID
     @Get(':id')
-    async findOneUser(@Param('id') id:number) : Promise<User> {
-        return this.userService.findOne(id);
+    async findOne(@Param('username') username:string) : Promise<User> {
+        return this.userService.findOne(username);
     }
 }
